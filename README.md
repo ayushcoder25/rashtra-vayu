@@ -136,27 +136,26 @@ The goal is to convert complex environmental data into simple and actionable rec
 rashtra-vayu/
 │
 ├── backend/
-│ ├── node/
-│ │ ├── package.json
-│ │ └── server.js
-│ │
-│ └── python/
-│ ├── app.py
-│ ├── requirements.txt
-│ └── run_demo.py
+│   ├── node/
+│   │   ├── package.json
+│   │   └── server.js
+│   │
+│   └── python/
+│       ├── app.py
+│       ├── requirements.txt
+│       └── run_demo.py
 │
 ├── css/
-│ └── styles.css
+│   └── styles.css
 │
 ├── js/
-│ └── app.jsx
+│   └── app.jsx
 │
 ├── index.html
 ├── logo.png
 ├── netlify.toml
 ├── vercel.json
 └── README.md
-
 
 ---
 
