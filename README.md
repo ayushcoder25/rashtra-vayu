@@ -1,7 +1,7 @@
 # Rashtra Vayu — National Air Intelligence
 
 Personalized weather & AQI health advisory for India.  
-**Live demo:** deploy `index.html` + assets to Netlify/Vercel.
+**Live demo:** https://rashtravayu.netlify.app/
 
 ---
 
