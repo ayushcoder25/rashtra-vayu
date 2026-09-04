@@ -7,7 +7,16 @@
 🚀 **Live Website:** https://rashtravayu.netlify.app/
 
 ---
+## 👨‍💻 Team
 
+This project was collaboratively developed by:
+
+- Ayush Chouhan
+- Satyam Kumar
+- Utkarsh Agarwal
+- Amaan Raza Khan
+
+---
 ## 📌 About the Project
 
 **Rashtra Vayu** is an AI-powered personalized weather and Air Quality Index (AQI) health advisory platform.
