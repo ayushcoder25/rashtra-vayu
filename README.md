@@ -133,29 +133,25 @@ The goal is to convert complex environmental data into simple and actionable rec
 ---
 
 ## 📁 Project Structure
+```
 rashtra-vayu/
-│
-├── backend/
-│   ├── node/
-│   │   ├── package.json
-│   │   └── server.js
-│   │
-│   └── python/
-│       ├── app.py
-│       ├── requirements.txt
-│       └── run_demo.py
-│
+├── index.html                 # HTML — page shell
 ├── css/
-│   └── styles.css
-│
+│   └── styles.css             # CSS — custom styles & animations
 ├── js/
-│   └── app.jsx
-│
-├── index.html
-├── logo.png
-├── netlify.toml
-├── vercel.json
-└── README.md
+│   └── app.jsx                # JavaScript (React 18 JSX) — full UI & logic
+├── logo.png                   # Brand logo
+├── netlify.toml               # Netlify config
+├── vercel.json                # Vercel config
+└── backend/
+    ├── node/
+    │   ├── server.js          # Node.js / Express (optional API server)
+    │   └── package.json       # Node dependencies
+    └── python/
+        ├── app.py             # Python HTTP server (optional)
+        ├── run_demo.py        # Local launcher
+        └── requirements.txt   # Python dependencies
+```
 
 ---
 
