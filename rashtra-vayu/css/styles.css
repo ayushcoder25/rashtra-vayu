@@ -1,0 +1,195 @@
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #0f172a;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(241, 245, 249, 0.3);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.5);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    /* ===== Weather-reactive background (macOS Weather style) ===== */
+    .weather-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      transition: background 1.5s ease;
+    }
+    .weather-bg .vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 15%, transparent 15%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+    }
+    .weather-bg .sun-glow {
+      position: absolute;
+      width: 50vmin;
+      height: 50vmin;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,220,120,0.5) 0%, rgba(255,180,60,0.2) 40%, transparent 70%);
+      top: -8%;
+      right: 5%;
+      animation: sunPulse 9s ease-in-out infinite;
+      filter: blur(4px);
+    }
+    .weather-bg .moon-glow {
+      position: absolute;
+      width: 26vmin;
+      height: 26vmin;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(220,230,255,0.32) 0%, rgba(180,200,255,0.1) 45%, transparent 70%);
+      top: 6%;
+      right: 14%;
+      filter: blur(2px);
+    }
+    @keyframes sunPulse {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+    .weather-bg .cloud {
+      position: absolute;
+      background: rgba(255,255,255,0.11);
+      border-radius: 9999px;
+      filter: blur(30px);
+      animation: cloudDrift linear infinite;
+    }
+    .weather-bg .cloud.dark {
+      background: rgba(25,35,55,0.5);
+      filter: blur(42px);
+    }
+    .weather-bg .cloud.bright {
+      background: rgba(255,255,255,0.2);
+      filter: blur(24px);
+    }
+    @keyframes cloudDrift {
+      0% { transform: translateX(-25%) translateY(0); }
+      50% { transform: translateX(35vw) translateY(-10px); }
+      100% { transform: translateX(110vw) translateY(0); }
+    }
+    /* Actual rain droplets (falling drops, not stripes) */
+    .weather-bg .rain-layer {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .weather-bg .raindrop {
+      position: absolute;
+      width: 1.5px;
+      background: linear-gradient(to bottom, transparent, rgba(200, 220, 255, 0.15), rgba(220, 235, 255, 0.75));
+      border-radius: 0 0 2px 2px;
+      animation: rainDropFall linear infinite;
+      opacity: 0.85;
+    }
+    .weather-bg .rain-layer.heavy .raindrop {
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, rgba(200, 220, 255, 0.25), rgba(230, 240, 255, 0.9));
+    }
+    @keyframes rainDropFall {
+      0% {
+        transform: translateY(-80px) translateX(0);
+        opacity: 0;
+      }
+      10% { opacity: 0.9; }
+      90% { opacity: 0.85; }
+      100% {
+        transform: translateY(110vh) translateX(12px);
+        opacity: 0.2;
+      }
+    }
+    /* Stars for night clear / partly cloudy */
+    .weather-bg .stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 8% 18%, #fff, transparent),
+        radial-gradient(1px 1px at 22% 42%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1.5px 1.5px at 38% 12%, #fff, transparent),
+        radial-gradient(1px 1px at 52% 58%, rgba(255,255,255,0.65), transparent),
+        radial-gradient(2px 2px at 68% 22%, #fff, transparent),
+        radial-gradient(1px 1px at 82% 48%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1.5px 1.5px at 14% 72%, #fff, transparent),
+        radial-gradient(1px 1px at 58% 78%, rgba(255,255,255,0.55), transparent),
+        radial-gradient(1.5px 1.5px at 88% 8%, #fff, transparent),
+        radial-gradient(1px 1px at 32% 88%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 74% 68%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 4% 38%, #fff, transparent),
+        radial-gradient(1px 1px at 95% 35%, rgba(255,255,255,0.75), transparent);
+      animation: starsTwinkle 7s ease-in-out infinite alternate;
+      opacity: 0.9;
+    }
+    @keyframes starsTwinkle {
+      0% { opacity: 0.55; }
+      100% { opacity: 0.95; }
+    }
+    .weather-bg .snow-layer {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(3px 3px at 20px 30px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 50px 70px, rgba(255,255,255,0.75), transparent),
+        radial-gradient(2.5px 2.5px at 90px 40px, rgba(255,255,255,0.85), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(255,255,255,0.7), transparent),
+        radial-gradient(3px 3px at 160px 20px, rgba(255,255,255,0.9), transparent);
+      background-size: 180px 100px;
+      animation: snowFall 8s linear infinite;
+      opacity: 0.75;
+    }
+    @keyframes snowFall {
+      0% { background-position: 0 0; }
+      100% { background-position: 30px 120px; }
+    }
+    .weather-bg .fog-layer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(150,160,175,0.2) 0%,
+        rgba(130,145,160,0.4) 45%,
+        rgba(110,125,140,0.3) 100%);
+      animation: fogDrift 20s ease-in-out infinite alternate;
+    }
+    @keyframes fogDrift {
+      0% { opacity: 0.45; transform: translateX(-3%); }
+      100% { opacity: 0.8; transform: translateX(3%); }
+    }
+    .weather-bg .lightning {
+      position: absolute;
+      inset: 0;
+      background: rgba(220,230,255,0.4);
+      opacity: 0;
+      animation: lightningFlash 8s ease-in-out infinite;
+    }
+    @keyframes lightningFlash {
+      0%, 90%, 100% { opacity: 0; }
+      91% { opacity: 0.55; }
+      93% { opacity: 0.08; }
+      95% { opacity: 0.3; }
+      97% { opacity: 0; }
+    }
+    .app-shell {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.84) !important;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: rgba(255,255,255,0.35) !important;
+    }
